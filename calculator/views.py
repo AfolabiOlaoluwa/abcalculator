@@ -38,7 +38,7 @@ def calculate(request):
     last_result = LastResult(visitors_control=visitors_control,visitors_variant=visitors_variant,conversion_control=conversion_control,conversion_variant=conversion_variant)
     #To check the significance,you compare the p_value with 0.05,if equal to or less,
     #significance is YES else it is a NO NO
-    if final_pvalue <0.05:
+    if final_pvalue <=0.05:
         significance = 'Yes'
     else:
         significance = 'No'
@@ -77,4 +77,5 @@ def p_value(visit_control,conv_control,visit_var,conv_var):
 
     x = (mean_conv - mean_visit)
     y = ( std_err_control**2 + std_err_var**2) **0.5
+    print x/y
     return norm.sf(abs(x/y))
