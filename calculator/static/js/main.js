@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-  $('#hello').submit(function(event){
+  $('form').submit(function(event){
     var dataval = {
       'vcontrol' :$('input[name=vcontrol]').val(),
       'vvariant' : $('input[name=vvariant]').val(),
@@ -11,14 +11,24 @@ $(document).ready(function(){
       type : 'POST',
       data : dataval,
       url : '/calculate/',
-      dataType : 'json',
+      success: function(data){
+
+
+            $('.pvalue').html(data.pvalue);
+            $('#significance').html(data.significance);
+            console.log(data);
+        }
+      // dataType : 'json',
 
     })
-    .done(function(data){
-      //do whatever you want hee
-      console.log(data)
-    })
+    // .done(function(data){
+    //   $('#pvalue').val('').replaceWith(data.pvalue).html();
+    //          $('#pvalue').html(data.pvalue);
+    //          $("#significance").html(data.significance);
+    //
+    //
+    //   console.log(data);
+    // })
+
   });
-
-
 });

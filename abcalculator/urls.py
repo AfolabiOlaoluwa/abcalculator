@@ -20,6 +20,5 @@ from calculator import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^main/$',views.main),
-    url(r'^getData/$',views.getLastResult),
     url(r'^calculate/$',views.calculate),
 ]
