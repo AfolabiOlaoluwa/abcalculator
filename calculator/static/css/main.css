@@ -11,7 +11,9 @@
   background-color: 		#808080;
 }
 span{
-  color: red
+  color: red;
+  display: none;
+  font-size: 12px;
 }
 .fa {
   padding: 20px;

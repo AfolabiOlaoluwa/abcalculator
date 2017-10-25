@@ -1,34 +1,44 @@
 
 $(document).ready(function(){
-  $('form').submit(function(event){
-    var dataval = {
-      'vcontrol' :$('input[name=vcontrol]').val(),
-      'vvariant' : $('input[name=vvariant]').val(),
-      'cvariant': $('input[name=cvariant]').val(),
-      'ccontrol': $('input[name=ccontrol]').val()
-    }
-    $.ajax({
-      type : 'POST',
-      data : dataval,
-      url : '/calculate/',
-      success: function(data){
 
+  $( "form" ).submit(function( event ) {
 
-            $('.pvalue').html(data.pvalue);
-            $('#significance').html(data.significance);
-            console.log(data);
-        }
-      // dataType : 'json',
+    // Stop form from submitting normally
+    event.preventDefault();
 
-    })
-    // .done(function(data){
-    //   $('#pvalue').val('').replaceWith(data.pvalue).html();
-    //          $('#pvalue').html(data.pvalue);
-    //          $("#significance").html(data.significance);
-    //
-    //
-    //   console.log(data);
-    // })
+    // Get some values from elements on the page:
+    var $form = $( this ),
+      vcontrol = $form.find( "input[name='vcontrol']" ).val(),
+      vvariant = $form.find( "input[name='vvariant']" ).val(),
+      cvariant = $form.find( "input[name='cvariant']" ).val(),
+      ccontrol = $form.find( "input[name='ccontrol']" ).val(),
+      url = $form.attr( "action" );
 
+    var posting = $.post( url, { vcontrol: vcontrol,vvariant:vvariant,cvariant:cvariant,ccontrol:ccontrol } );
+
+    posting.done(function( data ) {
+      console.log(data)
+      $("#pvalue").html(data.pvalue);
+      $("#significance").html(data.significance);
+      $("#result").slideDown("slow");
+    });
   });
+
+  $("#firstpanel").focusout(function(){
+        if((+$("#vc").val()< +$("#vv").val()) || (+$("#vc").val() ||+$("#vv").val())<15 ){
+          console.log("bad");
+          $("#error1").css("display","inline").fadeOut(6000)
+        }
+    });
+
+    $("#secondpanel").focusout(function(){
+          if((+$("#cc").val()< +$("#cv").val()) || (+$("#cc").val() ||+$("#cv").val())<15 ){
+            console.log("bad again");
+            $("#error2").css("display","inline").fadeOut(6000)
+          }
+      });
+
+
+
+
 });

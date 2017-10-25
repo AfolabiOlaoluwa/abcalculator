@@ -50,39 +50,37 @@
           <div class="panel panel-info">
             <div class="panel-heading">Calculate your values</div >
             <div class="panel-body">
-              <form id="hello">
+              <form action="/calculate/">
                 <div class="row">
                   <div class="col-sm-6">
-                    <div class="panel-group">
+                    <div class="panel-group" >
                         <div class="panel panel-default">
                           <div class="panel-heading">Number of visitors</div>
-                          <div class="panel-body">
+                          <div class="panel-body" id="firstpanel">
                             <div class="form-group col-xs-8">
-                              <label>Control</label>
+
+                              <label>Control</label><span id="error1"> Variation value too high or values less then 15</span>
                               <input type="number" class="form-control" id="vc"  name="vcontrol">
 
                             </div>
                             <div class="form-group col-xs-8">
                               <label>Variation</label>
                               <input type="number" class="form-control" id="vv"  name="vvariant">
-
-
-
-
                             </div
                           </div>
+
                         </div>
                     </div>
                   </div>
                </div>
 
                <div class="col-sm-6">
-                 <div class="panel-group">
+                 <div class="panel-group" id="secondpanel">
                      <div class="panel panel-default">
                        <div class="panel-heading">Number of conversions</div>
                        <div class="panel-body">
                          <div class="form-group col-xs-8">
-                           <label>Control</label>
+                           <label>Control</label><span id="error2"> Variation value too high or values less than 15</span>
                            <input type="number" class="form-control" id="cc"  name="ccontrol">
 
                          </div>
@@ -109,8 +107,8 @@
 </div>
 </div>
 </div>
-<div class= "container-fluid">
-  <div class="container-fluid bg-white">
+<div class= "container-fluid" >
+  <div class="container-fluid bg-white" style="display:none;" id="result">
     <div class="row">
       <div class="col-sm-12">
         <div class="panel-group">
@@ -127,7 +125,7 @@
                            </header>
 
                            <div class="w3-container">
-                             <p class="pvalue">hi</p>
+                             <p id="pvalue"></p>
                            </div>
 
                       </div>
@@ -146,7 +144,7 @@
                         </header>
 
                         <div class="w3-container">
-                          <p id="significance"></p>
+                          <p id="significance"><b></b></p>
                         </div>
 
                    </div>
